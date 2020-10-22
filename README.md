@@ -24,3 +24,5 @@ rails db:migrate
 * How to run the test suite
 rake
 
+* License
+The code sets are available under Apache 2.0 license. see LICENSE.
