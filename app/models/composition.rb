@@ -1,4 +1,5 @@
 require 'active_model'
+require 'httpclient'
 
 class Composition
   include ActiveModel::Model
@@ -14,5 +15,7 @@ class Composition
   before_save { throw(:abort) if invalid? }
 
   def save
+    ehrbaseclient = HTTPClient.new(base_url: EHRbase['url'])
+    ehrbaseclient.post("ehr/#{ehr_id}/composition", body,  'Content-Type' => 'application/json')
   end
 end

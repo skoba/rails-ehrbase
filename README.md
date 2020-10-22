@@ -11,7 +11,7 @@ Tested on Ruby 2.7.1
 Rails 6.0.3.3
 
 * Configuration
-This app works if
+To access EHRbase, url should be pointed in config/ehrbase.yml
 
 
 * Database creation

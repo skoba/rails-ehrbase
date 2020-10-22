@@ -1,10 +1,18 @@
 # coding: utf-8
 RSpec.describe Composition, type: :model do
   describe '#create' do
-    it 'should post a composition to create a record in EHRbase via REST API' do
+    before(:all) do
       person = Person.create!
-      composition = Composition.new(ehr_id: person.ehr_id, body: BODY)
-      expect(composition).to be_valid
+      @composition = Composition.new(ehr_id: person.ehr_id, body: BODY)
+    end
+
+    it 'should post a composition to create a record in EHRbase via REST API' do
+      expect(@composition).to be_valid
+    end
+
+    it 'should save properly' do
+      res = @composition.save
+      expect(res.status).to eq 204
     end
   end
 
@@ -31,7 +39,7 @@ BODY=<<END
         },
         "rm_version": "1.0.4"
     },
-v    "archetype_node_id": "openEHR-EHR-COMPOSITION.health_summary.v1",
+    "archetype_node_id": "openEHR-EHR-COMPOSITION.health_summary.v1",
     "language": {
         "_type": "CODE_PHRASE",
         "terminology_id": {
