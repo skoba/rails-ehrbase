@@ -506,6 +506,6 @@ end
 10.times do
   person = Person.create
   50.times do
-    
+    Composition.create(ehr_id: person.ehr_id, body: body)
   end
 end

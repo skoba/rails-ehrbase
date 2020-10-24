@@ -15,7 +15,12 @@ class Composition
   before_save { throw(:abort) if invalid? }
 
   def save
-    ehrbaseclient = HTTPClient.new(base_url: EHRbase['url'])
+    ehrbaseclient = HTTPClient.new(base_url: EHRbase['url'], user: 'ehrbase', password: 'SuperSecretPassword')
     ehrbaseclient.post("ehr/#{ehr_id}/composition", body,  'Content-Type' => 'application/json')
+  end
+
+  def self.create(params={})
+    composition = self.new(ehr_id: params[:ehr_id], body: params[:body])
+    composition.save
   end
 end
