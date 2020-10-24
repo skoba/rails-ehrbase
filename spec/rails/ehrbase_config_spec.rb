@@ -18,7 +18,7 @@ RSpec.describe 'configuration' do
   end
 
   it 'should compose url' do
-    expect(EHRbase['url']).to eq 'http://localhost:8080/ehrbase/rest/openehr/v1'
+    expect(EHRbase['url']).to eq 'http://localhost:8080/ehrbase/rest/openehr/v1/'
   end
 
   it 'should show auth pattern if any' do

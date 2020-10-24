@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Person, type: :model do
   it 'should not generate ehr_id by new' do
     person = Person.new
@@ -10,4 +8,14 @@ RSpec.describe Person, type: :model do
     person = Person.create!
     expect(person.ehr_id).not_to be_nil
   end
+
+  context 'without external id' do
+    it 'should create EHR' do
+      person = Person.create!
+      expect(person.ehr_id).not_to be_nil
+    end
+  end
+
+  context 'with external id'
+
 end

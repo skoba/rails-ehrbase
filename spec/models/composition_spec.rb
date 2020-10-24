@@ -1,9 +1,27 @@
 # coding: utf-8
-def body
-  symptom = ['咳', '発熱', '倦怠感', '症状なし', '鼻水'][rand(0..4)]
-  story = '3日前より発熱'
-  temperature = (35.0 + rand(0.0..5.0)).round(1)
-  <<END
+RSpec.describe Composition, type: :model do
+  describe '#create' do
+    before(:all) do
+      person = Person.create!
+      @composition = Composition.new(ehr_id: person.ehr_id, body: BODY)
+    end
+
+    it 'should post a composition to create a record in EHRbase via REST API' do
+      expect(@composition).to be_valid
+    end
+
+    it 'should save properly' do
+      res = @composition.save
+      expect(res.status).to eq 204
+    end
+  end
+
+  it 'should get the composition by id from EHRbase via REST API'
+  it 'should arrange the composition by id in EHRbase via REST API'
+  it 'should delete the composition by id in EHRbase via REST API'
+end
+
+BODY=<<END
 {
     "name": {
         "_type": "DV_TEXT",
@@ -298,7 +316,7 @@ def body
                                     "archetype_node_id": "at0004",
                                     "value": {
                                         "_type": "DV_TEXT",
-                                        "value": "#{story}"
+                                        "value": "4日前より発熱。解熱せず呼吸器症状悪化"
                                     }
                                 },
                                 {
@@ -326,7 +344,7 @@ def body
                                             "archetype_node_id": "at0001",
                                             "value": {
                                                 "_type": "DV_TEXT",
-                                                "value": "#{symptom}"
+                                                "value": "咳、鼻水"
                                             }
                                         }
                                     ]
@@ -479,7 +497,7 @@ def body
                                     "archetype_node_id": "at0004",
                                     "value": {
                                         "_type": "DV_QUANTITY",
-                                        "magnitude": #{temperature},
+                                        "magnitude": 37.0,
                                         "units": "°C"
                                     }
                                 }
@@ -492,11 +510,4 @@ def body
     ]
 }
 END
-end
-
-10.times do
-  person = Person.create
-  50.times do
-    Composition.create(ehr_id: person.ehr_id, body: body)
-  end
-end
+    

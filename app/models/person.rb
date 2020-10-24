@@ -1,8 +1,9 @@
+require 'httpclient'
+
 class Person < ApplicationRecord
-  before_create do |person|
-    client = HTTPClient.new
-    request = client.post("#{EHRbase['url']}/ehr")
-    ehr_id = request.headers['ETag']
-    person.ehr_id = ehr_id
+  before_save do
+    ehrbaseclient = HTTPClient.new(base_url: EHRbase['url'])
+    res = ehrbaseclient.post('ehr')
+    self.ehr_id = res.headers['ETag'][1..-2]
   end
 end

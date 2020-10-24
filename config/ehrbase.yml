@@ -4,9 +4,11 @@ default: &default
   port: 8080
   path: ehrbase/rest/openehr/v1
   auth: basic
-  user: ehrbase-user
+  username: ehrbase-user
   password: SuperSecretPassword
-
+  auth: basic
+  url: http://localhost:8080/ehrbase/rest/openehr/v1/
+  
 development:
   <<: *default
 
@@ -22,6 +24,3 @@ production:
   auth: <%= ENV['EHRBASE_AUTH_TYPE'] %>
   user: <%= ENV['EHRBASE_CREDENTIAL_USER'] %>
   password: "<%= ENV['EHRBASE_CREDENTIAL_SECRET_KEY'] %>"
-  
-
-  
