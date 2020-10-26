@@ -11,6 +11,6 @@ class Template
 
   private
   def self.ehrbaseclient
-    ehrbaseclient = HTTPClient.new(base_url: EHRbase['url'], user: EHRbase['usr'], password: EHRbase['password'])
+    ehrbaseclient = HTTPClient.new(base_url: EHRbase.url, user: EHRbase.username, password: EHRbase.password)
   end
 end
