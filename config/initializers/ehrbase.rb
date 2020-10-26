@@ -32,8 +32,8 @@ class EHRbase
       yaml['auth']
     end
 
-    def user
-      yaml['user']
+    def username
+      yaml['username']
     end
 
     def password

@@ -20,10 +20,24 @@ RSpec.describe 'EHRbase configuration' do
              'http://localhost:8080/ehrbase/rest/openehr/v1/'
   end
 
-  it 'should compose url from scratch' do
-    EHRbase.yaml = EHRBASE_CONFIG_WITHOUT_URL
-    expect(EHRbase.url).to eq \
-           'http://localhost:8080/ehrbase/rest/openehr/v1/'
+  context 'url is not defined' do
+    it 'should compose url from scratch' do
+      EHRbase.yaml = EHRBASE_CONFIG_WITHOUT_URL
+      expect(EHRbase.url).to eq \
+                'http://localhost:8080/ehrbase/rest/openehr/v1/'
+    end
+  end
+
+  it 'should have auth' do
+    expect(EHRbase.auth).to eq 'basic'
+  end
+
+  it 'should have username' do
+    expect(EHRbase.username).to eq 'ehrbase-user'
+  end
+
+  it 'should have password' do
+    expect(EHRbase.password).to eq 'SuperSecretPassword'
   end
 end
 

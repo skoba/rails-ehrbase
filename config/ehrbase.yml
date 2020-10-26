@@ -3,9 +3,9 @@ default: &default
   host: localhost
   port: 8080
   path_prefix: ehrbase/rest/openehr/v1/
+  auth: basic
   username: ehrbase-user
   password: SuperSecretPassword
-  auth: basic
   url: http://localhost:8080/ehrbase/rest/openehr/v1/
   
 development:
