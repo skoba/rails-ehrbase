@@ -1,6 +1,45 @@
-#require 'uri'
+class EHRbase
+  class << self
+    def yaml
+      @yaml ||= YAML.load(File.read("#{Rails.root}/config/ehrbase.yml"))[Rails.env]
+    end
 
-EHRbase = YAML.load(File.read("#{Rails.root}/config/ehrbase.yml"))[Rails.env]
+    def yaml=(yaml)
+      @yaml = YAML.load(yaml)[Rails.env]
+    end
 
-EHRbase['url'] ||= "#{EHRbase['scheme']}://#{EHRbase['host']}:#{EHRbase['port'].to_s}/#{EHRbase['path']}"
+    def scheme
+      yaml['scheme']
+    end
+
+    def host
+      yaml['host']
+    end
+
+    def port
+      yaml['port']
+    end
+
+    def path_prefix
+      yaml['path_prefix']
+    end
+
+    def url
+      yaml['url'] || "#{scheme}://#{host}:#{port}/#{path_prefix}"
+    end
+
+    def auth
+      yaml['auth']
+    end
+
+    def username
+      yaml['username']
+    end
+
+    def password
+      yaml['password']
+    end
+  end
+end
+
 

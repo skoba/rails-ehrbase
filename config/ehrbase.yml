@@ -2,11 +2,10 @@ default: &default
   scheme: http
   host: localhost
   port: 8080
-  path: ehrbase/rest/openehr/v1
+  path_prefix: ehrbase/rest/openehr/v1/
   auth: basic
   username: ehrbase-user
   password: SuperSecretPassword
-  auth: basic
   url: http://localhost:8080/ehrbase/rest/openehr/v1/
   
 development:
@@ -20,7 +19,7 @@ production:
   scheme: <%= ENV['EHRBASE_ACCESS_SCHEME'] %>
   host: <%= ENV['EHRBASE_LOCATION'] %>
   port: <%= ENV['EHRBASE_PORT'] %>
-  path: <%= ENV['EHRBASE_ehrbase/rest/openehr/v1'] %>
+  path_prefix: <%= ENV['EHRBASE_ehrbase/rest/openehr/v1'] %>
   auth: <%= ENV['EHRBASE_AUTH_TYPE'] %>
-  user: <%= ENV['EHRBASE_CREDENTIAL_USER'] %>
+  username: <%= ENV['EHRBASE_CREDENTIAL_USER'] %>
   password: "<%= ENV['EHRBASE_CREDENTIAL_SECRET_KEY'] %>"
