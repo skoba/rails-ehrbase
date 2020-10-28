@@ -16,6 +16,7 @@ RSpec.describe Person, type: :model do
     end
   end
 
-  context 'with external id'
-
+  context 'with external id' do
+    
+  end
 end
