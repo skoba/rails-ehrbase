@@ -19,24 +19,26 @@ class Composition
   define_model_callbacks :save, only: :before
   before_save { throw(:abort) if invalid? }
 
-  def update(params = {})
-    @body = params[:body]
-    res = Base.connection.put("ehr/#{ehr_id}/composition/#{@id}",
-                              body,
-                              'Content-Type' => 'application/json',
-                              'If-Match' => "#{@id}::#{@system}::#{@version}")
-
-    p res
-    @id, @system, @version = res.header['ETag'][0][1..-2].split('::')
-    res    
-  end
-
   def save
     res = Base.connection.post("ehr/#{ehr_id}/composition",
                                body,
                                'Content-Type' => 'application/json')
     @id, @system, @version = res.header['ETag'][0][1..-2].split('::')
     res
+  end
+
+  def update(params = {})
+    @body = params[:body]
+    res = Base.connection.put("ehr/#{ehr_id}/composition/#{@id}",
+                              body,
+                              'Content-Type' => 'application/json',
+                              'If-Match' => "#{@id}::#{@system}::#{@version}")
+    @id, @system, @version = res.header['ETag'][0][1..-2].split('::')
+    res    
+  end
+
+  def delete
+    Base.connection.delete("ehr/#{ehr_id}/composition/#{@id}::#{@system}::#{@version}")
   end
 
   class << self

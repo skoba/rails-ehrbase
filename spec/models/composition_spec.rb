@@ -38,7 +38,11 @@ RSpec.describe Composition, type: :model do
   end
 
   describe '#delete' do
-    it 'should delete the composition by id in EHRbase via REST API'
+    it 'should delete the composition by id in EHRbase via REST API' do
+      composition.save
+      res = composition.delete
+      expect(res.status).to eq 204
+    end
   end
 end
 
