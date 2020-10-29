@@ -1,5 +1,4 @@
 require 'httpclient'
-require_relative './base'
 
 class Person < ApplicationRecord
   include Base

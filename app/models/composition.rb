@@ -1,7 +1,6 @@
 require 'active_model'
 require 'httpclient'
 require 'json'
-require_relative './base'
 
 class Composition
   include ActiveModel::Model

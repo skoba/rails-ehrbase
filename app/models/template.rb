@@ -1,12 +1,13 @@
 require 'httpclient'
-require_relative './base'
 
 class Template
   include Base
 
   class << self
     def post(opt)
-      Base.connection.post('definition/template/adl1.4', opt, 'Content-Type' => 'application/xml')
+      Base.connection.post('definition/template/adl1.4',
+                           opt,
+                           'Content-Type' => 'application/xml')
     end
     
     def get_list
