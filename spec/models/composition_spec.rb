@@ -31,14 +31,15 @@ RSpec.describe Composition, type: :model do
 
   describe '#update' do
     it 'should update the composition by id in EHRbase via REST API' do
-      old_version = composition.version
+      old_version = composition.save.version
       composition.update(body: UPDATE_BODY)
-      expect(compositin.version).to eq old_version + 1
+      expect(composition.version).to eq "#{old_version.to_i + 1}"
     end
   end
 
-  it 'should delete the composition by id in EHRbase via REST API'
-
+  describe '#delete' do
+    it 'should delete the composition by id in EHRbase via REST API'
+  end
 end
 
 BODY=<<END

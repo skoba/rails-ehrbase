@@ -8,6 +8,8 @@ class Composition
   include ActiveModel::Attributes
   include Base
 
+  attr_reader :id, :version, :system
+
   attribute :ehr_id, :string
   attribute :body, :string
 
@@ -17,12 +19,28 @@ class Composition
   define_model_callbacks :save, only: :before
   before_save { throw(:abort) if invalid? }
 
+  def update(params = {})
+    @body = params[:body]
+    res = Base.connection.put("ehr/#{ehr_id}/composition/#{@id}",
+                              body,
+                              'Content-Type' => 'application/json',
+                              'If-Match' => "#{@id}::#{@system}::#{@version}")
+
+    p res
+    @id, @system, @version = res.header['ETag'][0][1..-2].split('::')
+    res    
+  end
+
   def save
-    Base.connection.post("ehr/#{ehr_id}/composition", body,  'Content-Type' => 'application/json')
+    res = Base.connection.post("ehr/#{ehr_id}/composition",
+                               body,
+                               'Content-Type' => 'application/json')
+    @id, @system, @version = res.header['ETag'][0][1..-2].split('::')
+    res
   end
 
   class << self
-    def reate(params={})
+    def create(params={})
       composition = self.new(ehr_id: params[:ehr_id], body: params[:body])
       composition.save
     end
