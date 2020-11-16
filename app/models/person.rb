@@ -1,6 +1,4 @@
-require 'httpclient'
-
-class Person < Party
+class Person < Actor
   include Base
 
   before_save do

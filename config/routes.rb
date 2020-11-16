@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root 'compositions#index'
   resources :compositions
+  resources :people
+  root 'people#index'
 end
