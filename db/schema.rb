@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_135405) do
+ActiveRecord::Schema.define(version: 2020_11_16_100856) do
+
+  create_table "parties", force: :cascade do |t|
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "ehr_id"
+    t.string "uuid"
+  end
 
   create_table "people", force: :cascade do |t|
     t.string "ehr_id"

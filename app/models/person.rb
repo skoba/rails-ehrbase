@@ -1,6 +1,6 @@
 require 'httpclient'
 
-class Person < ApplicationRecord
+class Person < Party
   include Base
 
   before_save do
