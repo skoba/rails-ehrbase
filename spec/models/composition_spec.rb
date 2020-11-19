@@ -90,7 +90,7 @@ BODY=<<END
                 "_type": "TERMINOLOGY_ID",
                 "value": "openehr"
             },
-            "code_string": 433
+            "code_string": "433"
         }
     },
     "composer": {

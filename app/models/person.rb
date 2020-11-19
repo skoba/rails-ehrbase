@@ -1,6 +1,4 @@
-require 'httpclient'
-
-class Person < ApplicationRecord
+class Person < Actor
   include Base
 
   before_save do
