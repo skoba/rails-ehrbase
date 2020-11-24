@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :composition do
-    body { }
+    #    body { }
     association :ehr,
                 factory: :ehr,
                 strategy: :create
