@@ -1,0 +1,8 @@
+Description:
+    This generates Web form from OPT
+
+Example:
+    rails generate openehr opt_file
+
+    This will create:
+       app/controller/

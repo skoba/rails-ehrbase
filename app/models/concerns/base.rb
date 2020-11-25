@@ -1,3 +1,6 @@
+require 'active_model'
+require 'httpclient'
+
 module Base
   extended ActiveSupport::Concern
 

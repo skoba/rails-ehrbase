@@ -1,5 +1,3 @@
-require 'active_model'
-require 'httpclient'
 require 'json'
 
 class Composition
@@ -41,7 +39,7 @@ class Composition
   end
 
   class << self
-    def create(params={})
+    def create(params = {})
       composition = self.new(ehr_id: params[:ehr_id], body: params[:body])
       composition.save
     end

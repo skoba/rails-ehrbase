@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :compositions
-  resources :people
-  root 'people#index'
+  resources :ehrs do
+    resources :compositions
+  end
+
+  root 'ehrs#index'
 end
