@@ -20,12 +20,12 @@ module OpenEHR
           Rails.root.join('app/archetypes')
         end
 
-        def archetype_name
+        def template_name
           operational_template.archetype_id.name
         end
 
         def controller_name
-          archetype_name.underscore
+          template_name.underscore
         end
 
         def controller_file_path
