@@ -1,8 +1,8 @@
 class Person < Actor
-  include Base
+  attr_accessor :ehr
 
-  before_save do
-    res = Base.connection.post('ehr')
-    self.ehr_id = res.headers['ETag'][1..-2]
+  before_create do
+    @ehr = Ehr.create!
+    self.ehr_id = @ehr.id
   end
 end

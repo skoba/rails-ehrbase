@@ -1,10 +1,10 @@
 RSpec.describe 'Composition Management', type: :request do
   describe 'GET index' do
-    let(:person) { FactoryBot.create :person }
-    let(:compositions) { FactoryBot.create_list composition: 2 }
+    let(:ehr) { create :ehr }
+    let(:compositions) { create_list composition: 2 }
 
-    it 'requested successfully' do
-      get person_compositions_url(person.id)
+    xit 'requested successfully' do
+      get ehr_compositions_url(ehr.id)
       expect(response).to have_http_status(200)
     end
   end

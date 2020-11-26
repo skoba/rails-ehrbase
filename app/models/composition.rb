@@ -16,6 +16,10 @@ class Composition
   define_model_callbacks :save, only: :before
   before_save { throw(:abort) if invalid? }
 
+  def ehr
+    Ehr.new(id: ehr_id)
+  end
+  
   def save
     res = Base.connection.post("ehr/#{ehr_id}/composition",
                                body,

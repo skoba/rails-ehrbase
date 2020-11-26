@@ -1,7 +1,7 @@
 # coding: utf-8
 RSpec.describe Composition, type: :model do
-  let(:person) { Person.create! }
-  let(:composition) { Composition.new(ehr_id: person.ehr_id, body: BODY) }
+  let(:ehr) { Ehr.create! }
+  let(:composition) { Composition.new(ehr_id: ehr.id, body: BODY) }
 
   describe '#create' do
     it 'should post a composition to create a record in EHRbase via REST API' do
@@ -12,20 +12,24 @@ RSpec.describe Composition, type: :model do
       res = composition.save
       expect(res.status).to eq 204
     end
+
+    it 'should have one EHR' do
+      expect(composition.ehr.id).not_to be_nil
+    end
   end
 
   describe '#read' do
     it 'should get the composition by id from EHRbase via REST API' do
       res = composition.save
-      composition_id =  res.headers["ETag"][1..-2]
-      body = JSON.parse Composition.find_by_id(person.ehr_id, composition_id).body
+      composition_id = res.headers["ETag"][1..-2]
+      body = JSON.parse Composition.find_by_id(ehr.id, composition_id).body
      
       expect( body['name']['value']).to eq 'Health summary'
     end
 
     it 'should get the list of composition by EHR ID from EHRbase via REST API' do
       composition.save
-      expect(Composition.find_by_ehr_id(person.ehr_id).size).to be >= 1
+      expect(Composition.find_by_ehr_id(ehr.id).size).to be >= 1
     end
   end
 

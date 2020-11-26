@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>EHRs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>EHR ID</th>
+      <th>No Compositions</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Date of birth</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ehrs.each do |ehr| %>
+      <tr>
+        <td><%= ehr.id %></td>
+        <td><%= ehr.person.name %></td>
+        <td><%= ehr.person.gender %></td>
+        <td><%= ehr.person.date_of_birth %></td>
+        <td><%= ehr.person.address %></td>
+        <td><%= ehr.person.phone %></td>
+        <td><%= link_to 'Show', person %></td>
+        <td><%= link_to 'Edit', edit_person_path(person) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />

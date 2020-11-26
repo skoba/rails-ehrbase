@@ -11,7 +11,7 @@ RSpec.describe 'Ehrs', type: :request do
   describe 'GET person record by ID' do
     xit 'reads a personal record' do
       create :ehr
-      get person_path, params: { }
+      get person_path, params: {}
     end
   end
 end

@@ -7,8 +7,6 @@ FactoryBot.define do
                         'composition_sample_body.json')
       )
     end
-    association :ehr,
-                factory: :ehr,
-                strategy: :create
+    ehr
   end
 end
