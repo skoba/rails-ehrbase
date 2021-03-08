@@ -12,6 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2020_11_22_112427) do
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "parties", force: :cascade do |t|
     t.string "rm_type"
     t.datetime "created_at", precision: 6, null: false
@@ -19,6 +25,17 @@ ActiveRecord::Schema.define(version: 2020_11_22_112427) do
     t.string "ehr_id"
     t.string "uuid"
     t.string "name"
+    t.integer "party_id"
+    t.index ["party_id"], name: "index_parties_on_party_id"
+  end
+
+  create_table "party_identities", force: :cascade do |t|
+    t.string "name"
+    t.string "purpose"
+    t.integer "party_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["party_id"], name: "index_party_identities_on_party_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -28,4 +45,6 @@ ActiveRecord::Schema.define(version: 2020_11_22_112427) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "parties", "parties"
+  add_foreign_key "party_identities", "parties"
 end
