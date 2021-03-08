@@ -1,16 +1,22 @@
 require 'openehr'
+require 'rails/generators'
 
 module OpenEHR
   module Rails
     module Generators
-      source_root File.expand_path('templates', __dir__)
 
-      class ArchetypedBase < Rails::Generators::NamedBase
+      class ArchetypedBase < ::Rails::Generators::NamedBase
+        source_root File.expand_path('templates', __dir__)
+
         def initialize(args, *options)
           @opt_file = args[0]
           super
         end
 
+        def web_template
+          @web_template ||= JSON.parse @json_file
+        end
+        
         def operational_template
           @operational_template ||=
             ::OpenEHR::Parser::OPTParser.new(@opt_file).parse
