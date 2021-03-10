@@ -2,7 +2,7 @@ RSpec.describe Person, type: :model do
   let(:person) { Person.create!(name: 'KOBAYASHI Shinji') }
   
   it 'should not generate ehr_id by new' do
-    person = build :person
+    person = Person.new(name: 'Other Name')
     expect(person.ehr_id).to be_nil
   end
 
