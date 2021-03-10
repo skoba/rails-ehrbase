@@ -24,7 +24,7 @@ RSpec.describe Monshin, type: :model do
     end
 
     it 'should have one EHR' do
-      expect(monshin.ehr.id).not_to be_nil
+      expect(monshin.ehr_id).not_to be_nil
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe Monshin, type: :model do
 
     it 'should get the list of composition by EHR ID from EHRbase via REST API' do
       monshin.save
-      expect(Monshin.find_by_ehr_id(ehr.id).size).to be >= 1
+      expect(Monshin.find_by_ehr_id(ehr.id).size).to be >= 2
     end
   end
 
@@ -58,7 +58,6 @@ RSpec.describe Monshin, type: :model do
       expect(res.status).to eq 204
     end
   end
-
 end
 
   
