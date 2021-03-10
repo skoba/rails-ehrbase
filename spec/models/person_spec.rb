@@ -1,5 +1,5 @@
 RSpec.describe Person, type: :model do
-  let(:person) { create :person }
+  let(:person) { Person.create!(name: 'KOBAYASHI Shinji') }
   
   it 'should not generate ehr_id by new' do
     person = build :person
@@ -21,6 +21,6 @@ RSpec.describe Person, type: :model do
   end
 
   context 'with external id' do
-    
+
   end
 end

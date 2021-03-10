@@ -3,7 +3,7 @@ RSpec.describe 'Composition Management', type: :request do
     let(:ehr) { create :ehr }
     let(:compositions) { create_list composition: 2 }
 
-    xit 'requested successfully' do
+    it 'requested successfully' do
       get ehr_compositions_url(ehr.id)
       expect(response).to have_http_status(200)
     end

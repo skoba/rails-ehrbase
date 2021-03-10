@@ -5,8 +5,9 @@ class Composition
   include ActiveModel::Attributes
   include Base
 
-  attr_reader :id, :version, :system
-
+  attr_reader :id, :version, :system, :ehr_id, :body
+  attribute :version, :integer
+  attribute :system, :string
   attribute :ehr_id, :string
   attribute :body, :string
 
@@ -16,30 +17,40 @@ class Composition
   define_model_callbacks :save, only: :before
   before_save { throw(:abort) if invalid? }
 
+  def initialize(params = {})
+    @ehr_id = params[:ehr_id]
+    @body = params[:body]
+  end
+
   def ehr
-    Ehr.new(id: ehr_id)
+    Ehr.create!(id: @ehr_id)
   end
   
   def save
-    res = Base.connection.post("ehr/#{ehr_id}/composition",
-                               body,
+    res = Base.connection.post("ehr/#{@ehr_id}/composition",
+                               @body,
                                'Content-Type' => 'application/json')
     @id, @system, @version = res.header['ETag'][0][1..-2].split('::')
     res
   end
 
+  def save!
+    save
+    self
+  end
+
   def update(params = {})
     @body = params[:body]
-    res = Base.connection.put("ehr/#{ehr_id}/composition/#{@id}",
-                              body,
+    res = Base.connection.put("ehr/#{@ehr_id}/composition/#{@id}",
+                              @body,
                               'Content-Type' => 'application/json',
                               'If-Match' => "#{@id}::#{@system}::#{@version}")
     @id, @system, @version = res.header['ETag'][0][1..-2].split('::')
-    res    
+    res
   end
 
   def delete
-    Base.connection.delete("ehr/#{ehr_id}/composition/#{@id}::#{@system}::#{@version}")
+    Base.connection.delete("ehr/#{@ehr_id}/composition/#{@id}::#{@system}::#{@version}")
   end
 
   class << self
@@ -47,7 +58,12 @@ class Composition
       composition = self.new(ehr_id: params[:ehr_id], body: params[:body])
       composition.save
     end
-    
+
+    def create!(params = {})
+      composition = self.new(ehr_id: params[:ehr_id], body: params[:body])
+      composition.save!
+    end
+
     def find_by_id(ehr_id, composition_id)
       res = Base.connection.get("ehr/#{ehr_id}/composition/#{composition_id}")
       Composition.new(ehr_id: ehr_id, body: res.body)

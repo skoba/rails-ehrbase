@@ -3,20 +3,26 @@ class Ehr
   include ActiveModel::Attributes
   include Base
 
-  attribute :id, :string
+  attr_reader :id
+  attr_reader :errors
 
   define_model_callbacks :save, only: :before
   before_save { throw(:abort) if invalid? }
 
-  def initalize(params = {})
-    self.id = params[:id]
+  def initialize(params = {})
+    @id = params[:id]
+    @errors = ActiveModel::Errors.new(self)
   end
 
   def save
-    unless self.id
+    unless @id
       res = Base.connection.post('ehr')
-      self.id = res.headers['ETag'][1..-2]
+      @id = res.headers['ETag'][1..-2]
     end
+  end
+
+  def save!
+    save
     self
   end
 
@@ -28,17 +34,19 @@ class Ehr
     Person.find_by(ehr_id: self.id)
   end
 
-  def self.create!(params = {})
-    Ehr.new(params).save
-  end
-
-  def self.all
-    Person.all.map do |person|
-      Ehr.new(id: person.ehr_id)
+  class << self
+    def create!(params = {})
+      Ehr.new(params).save!
     end
-  end
 
-  def self.find(id)
-    Ehr.new(id: id)
+    def all
+      Person.all.map do |person|
+        Ehr.new(id: person.ehr_id)
+      end
+    end
+    
+    def find(id)
+      Ehr.new(id: id)
+    end
   end
 end
