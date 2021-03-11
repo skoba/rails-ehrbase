@@ -10,10 +10,6 @@ class ArchetypedBase < Rails::Generators::NamedBase
     super
   end
 
-  def web_template_file
-    @web_template_file
-  end
-
   def web_template
     @web_template ||= JSON.parse(File.read(@web_template_file))
   end
