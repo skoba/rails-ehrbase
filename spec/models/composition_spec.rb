@@ -48,6 +48,10 @@ RSpec.describe Composition, type: :model do
       expect(res.status).to eq 204
     end
   end
+
+  xdescribe '#all' do
+    it 'should get all compositions by EHR_id'
+  end
 end
 
 BODY=<<END

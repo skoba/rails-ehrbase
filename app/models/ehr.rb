@@ -6,6 +6,8 @@ class Ehr
   attr_reader :id
   attr_reader :errors
 
+  attribute :id, :string
+  
   define_model_callbacks :save, only: :before
   before_save { throw(:abort) if invalid? }
 

@@ -1,0 +1,6 @@
+<h1>問診票の編集</h1>
+
+<%= render 'form', monshin: @monshin %>
+
+<%= link_to 'Show', ehr_monshin_path(params[:ehr_id], @monshin.id) %> |
+<%= link_to 'Back', ehr_monshins_path %>

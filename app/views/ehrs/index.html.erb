@@ -8,10 +8,6 @@
       <th>EHR ID</th>
       <th>No Compositions</th>
       <th>Name</th>
-      <th>Gender</th>
-      <th>Date of birth</th>
-      <th>Address</th>
-      <th>Phone</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,12 +17,8 @@
       <tr>
         <td><%= ehr.id %></td>
         <td><%= ehr.person.name %></td>
-        <td><%= ehr.person.gender %></td>
-        <td><%= ehr.person.date_of_birth %></td>
-        <td><%= ehr.person.address %></td>
-        <td><%= ehr.person.phone %></td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
+        <td><%= link_to 'Show', ehr_monshins_path(ehr.id) %></td>
+        <td><%= link_to 'Edit', edit_ehr_path(ehr.id) %></td>
       </tr>
     <% end %>
   </tbody>
