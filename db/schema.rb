@@ -24,11 +24,11 @@ ActiveRecord::Schema.define(version: 2020_11_22_112427) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "ehr_id"
     t.string "uuid"
-    t.string "name"
     t.integer "party_id"
+    t.string "name"
     t.index ["party_id"], name: "index_parties_on_party_id"
   end
-
+i8u
   create_table "party_identities", force: :cascade do |t|
     t.string "name"
     t.string "purpose"

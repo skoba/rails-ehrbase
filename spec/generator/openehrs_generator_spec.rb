@@ -1,9 +1,17 @@
 require 'generators/openehr/openehr_generator'
 
 
-RSpec.describe "ArchetypedBase", type: :generator do
-  xdescribe ArchetypedBase do
-    let(:opt_file) { Rails.root.join('app', 'archetypes', 'covid19_self_monitoring.opt').to_s }
+  context 'archetype file' do
+    xit 'archetype file is adl_file' do
+      archetyped_base = OpenEHR::Rails::Generators::ArchetypedBase.new([adl_file])
+      expect(archetyped_base.send(:archetype_file)).to eq(File.expand_path('
+../../                                                 templates/openEHR-EHR-OBSERVATION.blood_pressure.v1.adl', __FILE__))     
+    end
+  end
+  
+  xdescribe 'protected values' do
+    let(:archetyped_base) { Openehr::Generators::ArchetypedBase.new([archetype])}
+
 
     context 'operational template file' do
       it 'operational template file is opt_file' do

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>主訴:</strong>
+  <%= @monshin.presenting_problem %>
+</p>
+
+<p>
+  <strong>体温:</strong>
+  <%= @monshin.temperature %><%= @monshin.temperature_unit %>
+</p>
+
+<p>
+  <strong>身長:</strong>
+  <%= @monshin.height_length %><%= @monshin.height_length_unit %>
+</p>
+
+<p>
+  <strong>体重:</strong>
+  <%= @monshin.weight %><%= @monshin.weight_unit %>
+</p>
+
+<p>
+  <strong>病歴:</strong>
+  <%= @monshin.weight %><%= @monshin.story %>
+</p>
+
+<%= link_to '修正', edit_ehr_monshin_path(@monshin.id) %> |
+<%= link_to '一覧へ', ehr_monshins_path %>

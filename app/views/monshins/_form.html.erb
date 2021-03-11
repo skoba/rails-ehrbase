@@ -1,0 +1,42 @@
+<%= form_for @monshin, url: ehr_monshin_path, html: {method: 'PATCH'} do |f| %>
+  <% if @monshin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(monshin.errors.count, "error") %> prohibited this monshin from being saved:</h2>
+
+      <ul>
+      <% @monshin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :presenting_problem, '主訴' %>
+    <%= f.text_field :presenting_problem %>
+  </div>
+
+  <div class="field">
+    <%= f.label :temperature, '体温' %>
+    <%= f.number_field :temperature %>
+  </div>
+
+  <div class="field">
+    <%= f.label :height_length, '身長' %>
+    <%= f.number_field :height_length %>
+  </div>
+
+  <div class="field">
+    <%= f.label :weight, '体重' %>
+    <%= f.number_field :weight %>
+  </div>
+
+  <div class="field">
+    <%= f.label :story, '病歴' %>
+    <%= f.text_field :story %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit '保存' %>
+  </div>
+<% end %>

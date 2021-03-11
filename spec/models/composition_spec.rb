@@ -1,7 +1,11 @@
 # coding: utf-8
 RSpec.describe Composition, type: :model do
   let(:ehr) { Ehr.create! }
-  let(:composition) { Composition.new(ehr_id: ehr.id, body: BODY) }
+  let(:composition) { Composition.create!(ehr_id: ehr.id,
+                                          body: File.read(
+                                            Rails.root.join('spec',
+                                                            'factories',
+                                                            'composition_sample_body.json')))}
 
   describe '#create' do
     it 'should post a composition to create a record in EHRbase via REST API' do
@@ -20,10 +24,7 @@ RSpec.describe Composition, type: :model do
 
   describe '#read' do
     it 'should get the composition by id from EHRbase via REST API' do
-      res = composition.save
-      composition_id = res.headers["ETag"][1..-2]
-      body = JSON.parse Composition.find_by_id(ehr.id, composition_id).body
-     
+      body = JSON.parse Composition.find_by_id(composition.ehr_id, composition.id).body
       expect( body['name']['value']).to eq 'Health summary'
     end
 
@@ -43,10 +44,13 @@ RSpec.describe Composition, type: :model do
 
   describe '#delete' do
     it 'should delete the composition by id in EHRbase via REST API' do
-      composition.save
       res = composition.delete
       expect(res.status).to eq 204
     end
+  end
+
+  xdescribe '#all' do
+    it 'should get all compositions by EHR_id'
   end
 end
 
