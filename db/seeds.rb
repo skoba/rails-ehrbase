@@ -12,7 +12,7 @@ require 'faker'
                    weight: Faker::Number.normal(mean: 61.9, standard_deviation: 17.6),
                    weight_unit: "kg",
                    temperature: Faker::Number.normal(mean: 36.89, standard_deviation: 0.41),
-                   temperature_unit: "Cel",n
+                   temperature_unit: "Cel",
                    confounding_factors: ["着衣",'脱衣','軽装'].sample,
                    presenting_problem: ["頭痛",'胸痛','腹痛'].sample,
                    story: ["3日前から頭痛。激しくなり来院",'突然発症'].sample,

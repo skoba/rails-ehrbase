@@ -65,6 +65,7 @@ group :development do
   gem 'rubocop-rspec'
   gem 'rubocop-performance'
   gem 'guard'
+  gem 'guard-rails'
   gem 'guard-rubocop'
   gem 'guard-livereload'
 end
