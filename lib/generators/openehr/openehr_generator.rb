@@ -2,6 +2,9 @@ require 'openehr'
 require 'json'
 require 'rails/generators'
 
+module OpenEHR
+  module Rails
+    module Generators
 class ArchetypedBase < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
@@ -43,4 +46,11 @@ class ArchetypedBase < Rails::Generators::NamedBase
     
   end
 end
+      
+    end
+    
+  end
+  
+end
+
 

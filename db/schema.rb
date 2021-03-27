@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_22_112427) do
+ActiveRecord::Schema.define(version: 2021_03_26_071302) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_112427) do
   create_table "people", force: :cascade do |t|
     t.string "ehr_id"
     t.string "uuid"
+    t.string "orca_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

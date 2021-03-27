@@ -34,7 +34,7 @@ class Monshin < Composition
   
   def save
     res = self.connection.post("composition/", {query: {'format' => 'FLAT', 'templateId' => 'monshin.v.0.0.0', 'ehrId' => @ehr_id}, body: body, header: {'Content-Type' => 'application/json'}})
-
+p res.body
     @id, @version = JSON.parse(res.body)['compositionUid'].split('::')
     res
   end
