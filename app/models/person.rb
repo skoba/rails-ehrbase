@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'orca_api'
 
 class Person < ApplicationRecord
@@ -17,7 +18,7 @@ class Person < ApplicationRecord
   end
 
   def gender
-    @gender ||= ['', 'M','F',][params['Sex'].to_i]
+    @gender ||= ['', '男','女',][params['Sex'].to_i]
   end
 
   def params
