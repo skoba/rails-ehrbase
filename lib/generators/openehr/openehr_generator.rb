@@ -5,7 +5,7 @@ require 'rails/generators'
 module OpenEHR
   module Rails
     module Generators
-      class ArchetypedBase < Rails::Generators::NamedBase
+      class ArchetypedBase < ::Rails::Generators::NamedBase
         source_root File.expand_path('templates', __dir__)
         
         def initialize(args, *options)
