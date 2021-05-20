@@ -1,5 +1,6 @@
 class Diagnosis < Composition
   def search_code
-    term_serv_con =     
+    tc = term_serv_connection
+
   end
 end
