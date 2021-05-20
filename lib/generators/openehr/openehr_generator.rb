@@ -33,7 +33,7 @@ module OpenEHR
         def template_name
           operational_template.concept
         end
-        
+
         def controller_name
           template_name.underscore
         end

@@ -1,6 +1,6 @@
 require 'generators/openehr/openehr_generator'
 
-
+describe 'Rails generator for openEHR' do
   context 'archetype file' do
     xit 'archetype file is adl_file' do
       archetyped_base = OpenEHR::Rails::Generators::ArchetypedBase.new([adl_file])
@@ -21,7 +21,7 @@ require 'generators/openehr/openehr_generator'
     end
 
     describe 'protected values' do
-      let(:archetyped_base) { ArchetypedBase.new([opt_file])}
+      let(:archetyped_base) { ArchetypedBase.new([opt_file]) }
       
       context 'archetype path' do
         it 'archetype_path is app/archetypes' do
