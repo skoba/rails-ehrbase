@@ -9,6 +9,11 @@
   <strong>体温:</strong>
   <%= @monshin.temperature %><%= @monshin.temperature_unit %>
 </p>
+<p>
+  <strong>交絡因子</strong>
+  <%= @monshin.confounding_factors %>
+</p>
+
 
 <p>
   <strong>身長:</strong>
@@ -22,7 +27,7 @@
 
 <p>
   <strong>病歴:</strong>
-  <%= @monshin.weight %><%= @monshin.story %>
+  <%= @monshin.story %>
 </p>
 
 <%= link_to '修正', edit_ehr_monshin_path(@monshin.id) %> |
