@@ -1,5 +1,5 @@
 # coding: utf-8
-require 'orca_api'
+#require 'orca_api'
 
 class Person < ApplicationRecord
   attr_accessor :ehr

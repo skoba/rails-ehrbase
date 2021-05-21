@@ -5,13 +5,9 @@ Rails.application.routes.draw do
   resources :ehrs do
 #    resources :compositions
     resources :monshins
-  end
-
-  resources :ehrs do
-#    resources :compositions
+    resources :diagnoses
     resources :diagnoses_lists
   end
-
 
   root 'ehrs#index'
 end
