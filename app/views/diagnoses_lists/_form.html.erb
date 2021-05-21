@@ -1,0 +1,13 @@
+<%= form_with url: ehr_diagnoses_lists_path, local: true, method: :post do |f| %>
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>  
+</p>
+<p>
+  <%= f.label :code %>
+  <%= f.text_field :name %>
+</p>
+  <div class="actions">
+    <%= f.submit '保存' %>
+  </div>
+<% end %>

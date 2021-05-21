@@ -1,0 +1,31 @@
+<h1>病名リスト</h1>
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>病名</th>
+      <th>病名コード</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @diagnoses_lists.each do |diagnosis| %>
+      <tr>
+        <td><%= diagnosis.start_date %></td>
+        <td><%= diagnosis.diagnosis_name %></td>
+	<td><%= diagnosis.diagnosis_code %></td>
+        <td><%= link_to 'Show', ehr_diagnoses_list_path(@ehr.id, diagnosis.id) %></td>
+        <td><%= link_to 'Edit', edit_ehr_diagnoses_list_path(@ehr.id, diagnosis.id) %></td>
+        <td><%= link_to 'Destroy', ehr_diagnoses_list_path(@ehr.id, diagnosis.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新規病名登録', new_ehr_diagnoses_list_path %>

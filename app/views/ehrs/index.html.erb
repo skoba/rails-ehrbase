@@ -22,7 +22,7 @@
         <td><%= ehr.person.name %></td>
 	<td><%= ehr.person.dob %></td>
 	<td><%= ehr.person.gender %></td>
-        <td><%= link_to 'Show', ehr_monshins_path(ehr.id) %></td>
+        <td><%= link_to 'Show', ehr_diagnoses_lists_path(ehr.id) %></td>
         <td><%= link_to 'Edit', edit_ehr_path(ehr.id) %></td>
       </tr>
     <% end %>
