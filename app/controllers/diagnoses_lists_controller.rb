@@ -1,17 +1,19 @@
+# coding: utf-8
 class DiagnosesListsController < ApplicationController
-  before_action :set_diagnosis_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_diagnoses_list, only: [:show, :edit, :update, :destroy]
 
   def set_diagnoses_list
     @ehr = Ehr.find(params[:ehr_id])
-    @diagnoses_id = DiagnosesList.find_by_id(params[:ehr_id], params[:id])
+    @diagnoses_list = DiagnosesList.find_by_id(params[:ehr_id], params[:id])
   end
 
   def index
     @ehr = Ehr.find(params[:ehr_id])
-    @diagnoses_lists = DiagnosesList.all
+    @diagnoses_lists = DiagnosesList.find_by_ehr_id(@ehr.id)
   end
 
   def show
+
   end
 
   def edit
@@ -23,8 +25,14 @@ class DiagnosesListsController < ApplicationController
   end
 
   def create
-    @ehr = Ehr.find(params[:ehr_id])
-    @diagnoses_list = DiagnosesList.find_by_id(params[:ehr_id], params[:id])
+    params[:author] = 'テスト医師'
+    params[:start_date] = Time.new.iso8601
+    params[:diagnosis_terminologyo]='Shoubyoumei master'
+    @diagnoses_list = DiagnosesList.new(params)
+    @diagnoses_list.save
+    res = @diagnoses_list.save_to_orca
+p res
+    redirect_to ehr_diagnoses_lists_path
   end
 
   def update

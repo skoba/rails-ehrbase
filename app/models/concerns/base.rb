@@ -14,9 +14,9 @@ module Base
     alias_method :connection, :ehrbase_connection
 
     def orca_connection
-      @orca_con ||= HTTPClient.new(base_url: "http://localhost:8000",
-                                   user: "ormaster",
-                                   password: "ormaster")
+      orca_con= HTTPClient.new(base_url: "http://localhost:8888")
+      orca_con.set_auth("http://localhost:8888", "ormaster", "ormaster")
+      orca_con
     end
 
     def termserv_connection

@@ -1,2 +1,32 @@
-<h1>DiagnosesLists#show</h1>
-<p>Find me in app/views/diagnoses_lists/show.html.erb</p>
+<h1>病名リスト</h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>病名:</strong>
+  <%= @diagnoses_list.diagnosis_name %>
+</p>
+
+<p>
+  <strong>病名コード:</strong>
+  <%= @diagnoses_list.diagnosis_code %>
+</p>
+<p>
+  <strong>病名用ターミノロジー</strong>
+  <%= @diagnoses_list.diagnosis_terminology %>
+</p>
+
+
+<p>
+  <strong>開始日:</strong>
+  <%= @diagnoses_list.start_date %>
+</p>
+
+<p>
+  <strong>終了日:</strong>
+  <%= @diagnoses_list.end_date %>
+</p>
+
+
+<%= link_to '修正', edit_ehr_diagnoses_list_path(@diagnoses_list.id) %> |
+<%= link_to '一覧へ', ehr_diagnoses_lists_path %>
