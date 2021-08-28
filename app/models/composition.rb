@@ -5,6 +5,7 @@ class Composition
   include ActiveModel::Attributes
   include Base
 
+
   attr_reader :id, :version, :system, :ehr_id, :body, :name, :start_time
   attribute :version, :integer
   attribute :system, :string
