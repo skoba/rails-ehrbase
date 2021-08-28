@@ -74,7 +74,7 @@ class Composition
     end
     
     def find_by_ehr_id(ehr_id)
-      aql =  "select e/ehr_id/value as ehrId, c/context/start_time/value as start_time, c/name/value as name, c/uid/value as uid from EHR e [ehr_id/value='#{ehr_id}']contains COMPOSITION c"
+      aql =  "select e/ehr_id/value as ehrId, c/context/start_time/value as start_time, c/name/value as name, c/uid/value as uid from EHR e contains COMPOSITION c WHERE e/ehr_id/value='#{ehr_id}'"
       query = { 'q' => aql }
       res = Base.connection.get('query/aql', query)
       JSON.parse(res.body)['rows'].map do |row|

@@ -1,13 +1,15 @@
-<%= form_with url: ehr_diagnoses_lists_path, local: true, method: :post do |f| %>
-<p>
-  <%= f.label :name %>
-  <%= f.text_field :diagnosis_name %>
-</p>
-<p>
-  <%= f.label :code %>
-  <%= f.text_field :diagnosis_code %>
-</p>
+<%= form_with url: ehr_diagnoses_lists_path, remote: true, method: :post do |f| %>
+  <p>
+    <%= f.label :name, "病名" %>
+    <%= f.text_field :diagnosis_name %>
+    <%= link_to '検索', ehr_diagnoses_path %>
+  </p>
+  
+  <p>
+    <%= f.label :code, "コード" %>
+    <%= f.text_field :diagnosis_code %>
+  </p>
   <div class="actions">
-    <%= f.submit '保存' %>
+    <%= f.submit '保存', class: 'btn btn-primary' %>
   </div>
 <% end %>

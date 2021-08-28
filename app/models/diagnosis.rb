@@ -1,6 +1,14 @@
 class Diagnosis < Composition
-  def search_code
-    tc = term_serv_connection
 
+  class << self
+    def search_code(description)
+      tc = Base.termserv_connection
+      res = tc.get('/codes', description: description)
+
+      JSON.parse(res.body).map do |item|
+        { code: item['code'], description: item['description'] }
+      end
+    end
   end
 end
+

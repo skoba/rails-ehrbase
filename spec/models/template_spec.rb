@@ -6,7 +6,7 @@ RSpec.describe Template, type: :model do
   end
 
   it 'should list template' do
-    res = Template.get_list
+    res = Template.all
     expect(res.size).to be >=1
   end
 end

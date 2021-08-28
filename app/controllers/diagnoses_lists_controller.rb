@@ -1,7 +1,6 @@
 # coding: utf-8
 class DiagnosesListsController < ApplicationController
   before_action :set_diagnoses_list, only: [:show, :edit, :update, :destroy]
-
   def set_diagnoses_list
     @ehr = Ehr.find(params[:ehr_id])
     @diagnoses_list = DiagnosesList.find_by_id(params[:ehr_id], params[:id])
@@ -29,9 +28,9 @@ class DiagnosesListsController < ApplicationController
     params[:start_date] = Time.new.iso8601
     params[:diagnosis_terminologyo]='Shoubyoumei master'
     @diagnoses_list = DiagnosesList.new(params)
-    @diagnoses_list.save
+    @diagnoses_lsit.save
     res = @diagnoses_list.save_to_orca
-p res
+
     redirect_to ehr_diagnoses_lists_path
   end
 

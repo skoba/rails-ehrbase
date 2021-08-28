@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Template ID</th>
+      <th>Concept</th>
+      <th>Archetype ID</th>
+      <th>Created date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @templates.each do |template| %>
+    <tr>
+      <td><%= template['template_id'] %></td>
+      <td><%= template['concept'] %></td>
+      <td><%= template['archetype_id'] %></td>
+      <td><%= template['created_timestamp'] %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Register New Template', new_template_path %>
