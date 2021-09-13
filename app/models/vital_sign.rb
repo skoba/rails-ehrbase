@@ -97,17 +97,17 @@ class VitalSign < Composition
                 "_type": "OBSERVATION",
                 "name": {
                     "_type": "DV_TEXT",
-                    "value": "Temperature"
+                    "value": "Body temperature"
                 },
                 "archetype_details": {
                     "_type": "ARCHETYPED",
                     "archetype_id": {
                         "_type": "ARCHETYPE_ID",
-                        "value": "openEHR-EHR-OBSERVATION.temperature.v2"
+                        "value": "openEHR-EHR-OBSERVATION.body_temperature.v2"
                     },
                     "rm_version": "1.0.4"
                 },
-                "archetype_node_id": "openEHR-EHR-OBSERVATION.temperature.v2",
+                "archetype_node_id": "openEHR-EHR-OBSERVATION.body_temperature.v2",
                 "language": {
                     "_type": "CODE_PHRASE",
                     "terminology_id": {
