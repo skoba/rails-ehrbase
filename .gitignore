@@ -32,7 +32,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-<<<<<<< HEAD
 Gemfile.lock
 
 *~
@@ -44,11 +43,6 @@ Gemfile.lock
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-=======
 
-Gemfile.lock
-.\#*
-*~
-\#*\#
+
 auto-save-list
->>>>>>> bc12486771e2f679b2102c7966f7f66fc9f75a06
