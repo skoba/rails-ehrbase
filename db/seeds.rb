@@ -40,13 +40,13 @@ require 'faker'
     VitalSign.create(ehr_id: person.ehr_id,
                         start_date: Time.now.iso8601,
                         end_date: Time.now.iso8601,
-                        temperature: Faker::Number.normal(mean: 36.89, standard_deviation: 0.41).ceil(1),
+                        temperature: Faker::Number.normal(mean: 36.89, standard_deviation: 1.2).ceil(1),
                         heart_rate: Faker::Number.normal(mean: 80.5, standard_deviation: 29.2).ceil(1),
                         systolic_pressure: Faker::Number.normal(mean: 120, standard_deviation: 40.2).ceil(1),
                         diastolic_pressure: Faker::Number.normal(mean: 80, standard_deviation: 30.2).ceil(1),
                         mean_arterial_pressure: Faker::Number.normal(mean: 100, standard_deviation: 35.2).ceil(1),
                         spo2: Faker::Number.normal(mean: 92, standard_deviation: 0.8).ceil(1),
-                        respiratin_rate: Faker::Number.normal(mean: 22, standard_deviation: 7.2).ceil(1),
+                        respiration_rate: Faker::Number.normal(mean: 22, standard_deviation: 7.2).ceil(1),
                         intravascular_pressure: Faker::Number.normal(mean: 80.5, standard_deviation: 29.2).ceil(1))
   end
 end

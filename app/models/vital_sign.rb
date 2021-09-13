@@ -18,7 +18,7 @@ class VitalSign < Composition
     end
 
     def create(params)
-      vital_signs = <<"END"
+      body = <<"END"
 {
     "name": {
         "_type": "DV_TEXT",
@@ -103,11 +103,11 @@ class VitalSign < Composition
                     "_type": "ARCHETYPED",
                     "archetype_id": {
                         "_type": "ARCHETYPE_ID",
-                        "value": "openEHR-EHR-OBSERVATION.temperature.v1"
+                        "value": "openEHR-EHR-OBSERVATION.temperature.v2"
                     },
                     "rm_version": "1.0.4"
                 },
-                "archetype_node_id": "openEHR-EHR-OBSERVATION.temperature.v1",
+                "archetype_node_id": "openEHR-EHR-OBSERVATION.temperature.v2",
                 "language": {
                     "_type": "CODE_PHRASE",
                     "terminology_id": {
@@ -133,7 +133,7 @@ class VitalSign < Composition
                         "_type": "DV_TEXT",
                         "value": "Event Series"
                     },
-                    "archetype_node_id": "at0001",
+                    "archetype_node_id": "at0002",
                     "origin": {
                         "_type": "DV_DATE_TIME",
                         "value": "#{params[:start_date]}"
@@ -145,7 +145,7 @@ class VitalSign < Composition
                                 "_type": "DV_TEXT",
                                 "value": "Any event"
                             },
-                            "archetype_node_id": "at0002",
+                            "archetype_node_id": "at0003",
                             "time": {
                                 "_type": "DV_DATE_TIME",
                                 "value": "#{params[:start_date]}"
@@ -156,7 +156,7 @@ class VitalSign < Composition
                                     "_type": "DV_TEXT",
                                     "value": "Single"
                                 },
-                                "archetype_node_id": "at0003",
+                                "archetype_node_id": "at0001",
                                 "items": [
                                     {
                                         "_type": "ELEMENT",
@@ -246,7 +246,7 @@ class VitalSign < Composition
                                         "_type": "ELEMENT",
                                         "name": {
                                             "_type": "DV_TEXT",
-                                            "value": "Temperature"
+                                            "value": "Rate"
                                         },
                                         "archetype_node_id": "at0004",
                                         "value": {
@@ -644,9 +644,8 @@ class VitalSign < Composition
     }
 
 END
-     res = self.connection.post("composition/", {query: {'format' => 'FLAT', 'templateId' => 'ICU_VITAL_SIGNS', 'ehrId' => params[:ehr_id]}, body: vital_signs, header: {'Content-Type' => 'application/json'}})
-     end
+      super(ehr_id: params[:ehr_id], body: body)
+    end
   end
-  
 end
 
